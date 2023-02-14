@@ -40,31 +40,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-
-
-  });
-
-  sequelize.define('tourism',{
-    nombre:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-
-    difficult:{
-      type: DataTypes.TINYINT,
-      allowNull: false
-    },
-
-    duration:{
-      type:DataTypes.TINYINT,
-      allowNull: false
-    },
-
-    season:{
-      type: DataTypes.ENUM
-    }
-
-  })
-
+  }, {freezeTableName:true});
   
 };
