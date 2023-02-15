@@ -35,7 +35,7 @@ const {Countries, Tours } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Countries.belongsToMany(Tours);
+Countries.belongsToMany(Tours, {through:"Tour_Events"});
 
 
 module.exports = {
