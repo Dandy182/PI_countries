@@ -2,8 +2,8 @@
 
 module.exports = (Sequelize) => {
 
-    Sequelize.define('tours', {
-        nombre:{
+    Sequelize.define('activities', {
+        name:{
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -23,5 +23,5 @@ module.exports = (Sequelize) => {
             type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera')
         }
 
-    })
+    }, {freezeTableName:true})
 }
