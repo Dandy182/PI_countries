@@ -13,7 +13,7 @@ router.get('/', (req, res)=>{
 })
 
 
-router.get('/countries/:', (req, res)=>{
+router.get('/countries/:idPais', (req, res)=>{
   const countries = async ()=>{
     const dApi = await axios.get(`https://restcountries.com/v3/all`)
     const result = await dApi.data.map(c =>{
