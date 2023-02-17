@@ -12,12 +12,9 @@ router.get('/', (req, res)=>{
   res.send('countries')
 })
 
-
-router.get('/countries/:idPaises', (req, res)=>{
   const countries = async ()=>{
     const dApi = await axios.get(`https://restcountries.com/v3/all`)
     const result = await dApi.data.map(c =>{
-
       return {
         id: c.cca3,
         name: c.name.common,
@@ -28,12 +25,28 @@ router.get('/countries/:idPaises', (req, res)=>{
         area: c.area,
         population: c.population
       }
-    })
+    });
 
-    res.send(result);
+    return  result;
   }
-})
 
+
+const getDataBase = async () => {
+  return await Country.findAll({
+    include:{
+      model: Activities,
+      attributes: ['name', 'dificult', 'duration', 'season'],
+    }
+
+  });
+}
+
+
+const getCounttries = async () =>{
+  const infCountries = await  countries()
+  const infActivities = await getDataBase();
+  return infCountries.concat(infActivities);
+}
 
 
 
