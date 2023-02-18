@@ -1,8 +1,8 @@
- const { DataTypes, Sequelize } = require('sequelize');
+const { DataTypes} = require('sequelize');
 
-module.exports = (Sequelize) => {
+module.exports = (sequelize) => {
 
-    Sequelize.define('activities', {
+    sequelize.define('activities', {
         name:{
             type: DataTypes.STRING,
             allowNull: false

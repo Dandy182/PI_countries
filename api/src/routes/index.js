@@ -2,13 +2,13 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
-
+const {Country, Activities} = require('../db');
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-  const countries = async ()=>{
+  const getApiCountries = async ()=>{
     const dApi = await axios.get(`https://restcountries.com/v3/all`)
     const result = await dApi.data.map(c =>{
       return {
@@ -16,7 +16,7 @@ const router = Router();
         name: c.name.common,
         img: c.flags[0],
         continent: c.continents[0],
-        capital: c.capital[0],
+        capital: c.capital,
         sub:c.region,
         area: c.area,
         population: c.population
@@ -38,11 +38,18 @@ const getDataBase = async () => {
 }
 
 
-const getCounttries = async () =>{
-  const infCountries = await  countries()
+const getFullCounttries = async () =>{
+  const infCountries = await  getApiCountries()
   const infActivities = await getDataBase();
   return infCountries.concat(infActivities);
 }
+
+router.get('/countries', async (req, res) =>{
+  let allCountries = await getApiCountries();
+  let name = req.query.name;
+
+  res.send(allCountries);
+})
 
 
 
