@@ -26,30 +26,26 @@ const router = Router();
     return  result;
   }
 
-
 const getDataBase = async () => {
   return await Country.findAll({
-    include:{
+    include:[{
       model: Activities,
-      attributes: ['name', 'dificult', 'duration', 'season'],
-    }
-
+    }]
   });
 }
 
-
-const getFullCounttries = async () =>{
+const getFullCountries = async () =>{
   const infCountries = await  getApiCountries()
   const infActivities = await getDataBase();
   return infCountries.concat(infActivities);
 }
 
 router.get('/countries', async (req, res) =>{
-  let allCountries = await getApiCountries();
+  let allCountries = await getFullCountries();
   let name = req.query.name;
-
-  res.send(allCountries);
 })
+
+router.get('/countries/{idPais}')
 
 
 
