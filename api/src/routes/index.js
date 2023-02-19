@@ -42,7 +42,8 @@ const getFullCountries = async () =>{
 
 router.get('/countries', async (req, res) =>{
   let allCountries = await getFullCountries();
-  let name = req.query.name;
+  let search = req.query.name;
+  res.status(200).send(allCountries);
 })
 
 router.get('/countries/{idPais}')
