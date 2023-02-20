@@ -43,11 +43,16 @@ const getFullCountries = async () =>{
 router.get('/countries', async (req, res) =>{
   let allCountries = await getFullCountries();
   let search = req.query.name;
-  res.status(200).send(allCountries);
-})
 
-router.get('/countries/{idPais}')
 
+  if(search){
+    let selectCountry = allCountries.filter(c => c.name.includes(search));
+    selectCountry ? res.status(200).send(selectCountry) : res.status(404).send(`El país solicitado no se encuentra`) ;
+  }else{
+    res.status(200).send(allCountries);
+  }
+
+ })
 
 
 module.exports = router;
