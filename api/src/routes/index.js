@@ -3,39 +3,44 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
 const {Country, Activities} = require('../db');
-const {getApiCountries, getDataBase} = require('../Controllers/DCountries');
+
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.get('/countries', async (req, res)=>{
+    let {name} = req.query;
 
+    if(!name){
+        try{
+            let getDataApi = await axios.get(`https://restcountries.com/v3/all`)
+            getDataApi.data.map(c => {
+                Country.findOrCreate({
+                    where:{id: c.cca3},
+                    defaults:{
+                        id: c.cca3,
+                        name: c.name.common,
+                        img: c.flags[1],
+                        continent: c.continents[0],
+                        capital: !c.capital ? `This country doesn't have a capital` : c.capital[0],
+                        subregion: c.subregion,
+                        area: c.area,
+                        population: c.population
+                    }                 
 
+                });
 
-const getFullCountries = async () =>{
-  const infCountries = await  getApiCountries()
-  const infActivities = await getDataBase();
-  return infCountries.concat(infActivities);
+            });
 
-}
+        }catch(error){
+            res.status(401).json(error.message);
+        }
+    }
 
-router.get('/countries', async (req, res) =>{
-  let allCountries = await getFullCountries();
-  let search = req.query.name;
+}); //fin del router.get
+      
 
-
-  if(search){
-    let selectCountry = allCountries.filter(c => c.name.includes(search));
-    selectCountry.length ? res.status(200).send(selectCountry) : res.status(404).send(`El país solicitado no se encuentra`) ;
-  }else{
-    res.status(200).send(allCountries);
-  }
-
- })
-
-router.get('/countries/:{idPais}', async (req, res) =>{
-  let searchName = req.params['{idPais}']
-  console.log(searchName);
-})
-
+      
+    
 module.exports = router;
