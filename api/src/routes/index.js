@@ -28,13 +28,46 @@ router.get('/countries', async (req, res)=>{
                         area: c.area,
                         population: c.population
                     }                 
-
                 });
+            });
+
+            const allCountries = await Country.findAll({
+                attributes:['id', 'name', 'img', 'continent', 'population'],
+                include:{
+                    model: Activities,
+                    attributes:['name', 'difficult', 'duration', 'season']
+                }
 
             });
 
+            res.status(200).json(allCountries);
+
         }catch(error){
-            res.status(401).json(error.message);
+            res.status(401).json(`The Api is not responding`);
+        }
+    } else {
+        try{
+           
+
+            const findCountry = await Country.findAll({
+                where:{
+                    name:{
+                        [op.iLike]: name
+                    }
+                },
+                attributes:{
+                    exclude:['createAt', 'updateAt']
+                }
+            });
+
+            if(findCountry.length !== 0){
+                res.status(200).json(findCountry);
+            }else{
+                throw new Error(`Couldn't find a country with than name`)
+            }
+
+        }catch(error){
+            res.status(404).json(error.message)
         }
     }
 
