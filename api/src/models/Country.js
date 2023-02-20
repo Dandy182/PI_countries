@@ -7,12 +7,18 @@ module.exports = (sequelize) => {
     id:{
       type: DataTypes.STRING(3),
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      unique:true
     },
 
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+
+    img:{
+      type: DataTypes.STRING,
+      allowNull:false
     },
 
     continent:{
@@ -27,17 +33,17 @@ module.exports = (sequelize) => {
 
     subregion:{
       type: DataTypes.STRING,
-      allowNull: false, 
+      defaultVaule:'' 
     },
 
     area:{
       type: DataTypes.STRING,
-      allowNull: false,
+      defaultVaule:0
     },
 
     population:{
       type: DataTypes.STRING,
-      allowNull: false
+      defaultVaule:0
     }
   }, {freezeTableName:true});
   
