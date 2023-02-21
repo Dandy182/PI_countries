@@ -12,6 +12,8 @@ router.get('/countries', getData); //fin del router.get
 
 router.get('/countries/:id', countryId);
 
+router.post('/activities')
+
       
     
 module.exports = router;
