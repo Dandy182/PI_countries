@@ -2,6 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require('axios');
+const { Op } = require('sequelize');
 const {Country, Activities} = require('../db');
 
 const router = Router();
@@ -37,26 +38,24 @@ router.get('/countries', async (req, res)=>{
                     model: Activities,
                     attributes:['name', 'difficult', 'duration', 'season']
                 }
-
             });
 
             res.status(200).json(allCountries);
 
         }catch(error){
-            res.status(401).json(`The Api is not responding`);
+
+            res.status(401).send(`The Api is not responding`);
         }
     } else {
-        try{
-           
+
+        try{   
 
             const findCountry = await Country.findAll({
-                where:{
-                    name:{
-                        [op.iLike]: name
-                    }
+                where: {
+                    name:{ [Op.iLike]: `%${name}%` }
                 },
                 attributes:{
-                    exclude:['createAt', 'updateAt']
+                    exclude:['createAt', 'updateAt'],
                 }
             });
 
