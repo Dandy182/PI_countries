@@ -67,12 +67,15 @@ const getData = async (req, res)=>{
 };
 
 
-const CountryId = async (req, res)=>{
-  const {idPais} = req.params;
+const countryId = async (req, res)=>{
+  const idPais = req.params.id;
+  
   try{
     let country = await Country.findAll({
       where:{
-        id:idPais
+        id:{
+          [Op.like]: idPais
+        }
       },
       attributes: {
         exclude: ['createAt', 'updateAt']
@@ -99,5 +102,5 @@ const CountryId = async (req, res)=>{
 
 module.exports = {
   getData,
-  CountryId
+  countryId
 }
