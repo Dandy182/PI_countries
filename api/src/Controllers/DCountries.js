@@ -69,7 +69,7 @@ const getData = async (req, res)=>{
 
 const countryId = async (req, res)=>{
   const idPais = req.params.id;
-  
+
   try{
     let country = await Country.findAll({
       where:{
@@ -98,7 +98,15 @@ const countryId = async (req, res)=>{
   }
 }
 
+const mkActivities = async (req, res) => {
+  const {name, difficult, duration, season, countries} = req.body;
 
+  try{
+    let 
+  }catch(error){
+    throw new Error(`The activity it wasn't created`)
+  }
+}
 
 module.exports = {
   getData,
