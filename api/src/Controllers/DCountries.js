@@ -66,9 +66,8 @@ const getData = async (req, res)=>{
 
 };
 
-
 const countryId = async (req, res)=>{
-  const idPais = req.params.id;
+  let idPais = req.params.id;
 
   try{
     let country = await Country.findAll({
@@ -102,13 +101,20 @@ const mkActivities = async (req, res) => {
   const {name, difficult, duration, season, countries} = req.body;
 
   try{
-    let 
+    const activity = await Activities.create({
+      name, difficult, duration, season
+    });
+
+    await activity.addCountries(countries);
+
+    res.status(200).json(activities);
   }catch(error){
-    throw new Error(`The activity it wasn't created`)
+    res.status(404).send(`The activity it wasn't created`)
   }
 }
 
 module.exports = {
   getData,
-  countryId
+  countryId,
+  mkActivities
 }
