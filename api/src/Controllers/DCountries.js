@@ -107,7 +107,7 @@ const mkActivities = async (req, res) => {
 
     await activity.addCountries(countries);
 
-    res.status(200).json(activities);
+    res.status(200).json(activity);
   }catch(error){
     res.status(404).send(`The activity it wasn't created`)
   }
