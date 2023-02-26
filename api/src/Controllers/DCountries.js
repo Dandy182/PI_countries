@@ -98,14 +98,14 @@ const countryId = async (req, res)=>{
 }
 
 const mkActivities = async (req, res) => {
-  const {name, difficult, duration, season, countries} = req.body;
+  const {name, difficult, duration, season, country} = req.body;
 
   try{
     const activity = await Activities.create({
       name, difficult, duration, season
     });
 
-    await activity.addCountries(countries);
+    await activity.addCountry(country);
 
     res.status(200).json(activity);
   }catch(error){
