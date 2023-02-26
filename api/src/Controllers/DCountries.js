@@ -31,7 +31,8 @@ const getData = async (req, res)=>{
               include:{
                   model: Activities,
                   attributes:['name', 'difficult', 'duration', 'season']
-              }
+              },
+                    
           });
 
           res.status(200).json(allCountries);
@@ -99,13 +100,20 @@ const countryId = async (req, res)=>{
 
 const mkActivities = async (req, res) => {
   const {name, difficult, duration, season, country} = req.body;
+  
 
   try{
     const activity = await Activities.create({
       name, difficult, duration, season
     });
 
-    await activity.addCountry(country);
+    let countryDb = await Country.findAll({
+      where:{
+        name:country
+      }
+    })
+
+    await activity.addCountry(countryDb);
 
     res.status(200).json(activity);
   }catch(error){
