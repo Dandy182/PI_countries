@@ -1,7 +1,7 @@
 
 export default function Botton(){
 
-  return (<div>
-    Ingresar
-  </div>)
+  return (<button>
+    <p>Ingresar</p>
+  </button>)
 }

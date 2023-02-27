@@ -17,18 +17,9 @@ img{
 
 body{
   font-size:62.5%;
-
-}
-
-.bkg_start{
-  display: grid;
   background-image: url(./img/pxfuel.jpg);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 1000px;
-  align-items: center;
-  justify-content: center;
 }
+
+
 
 /* ventana de inicio */
