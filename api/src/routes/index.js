@@ -12,7 +12,10 @@ router.get('/countries', getData); //fin del router.get
 
 router.get('/countries/:id', countryId); // fin de countyID
 
-router.post('/activities', mkActivities)
+router.post('/activities', mkActivities) //fin de mkActivities
+
+
+
 
       
     
