@@ -99,29 +99,30 @@ const countryId = async (req, res)=>{
 }
 
 
+
 const mkActivities = async (req, res) => {
   const {name, difficult, duration, season, country} = req.body;
   
-  try{
+  console.log(name, difficult, duration, season, country)
 
-    const createActivity = await Activities.create({
+  try{
+    const activity = await Activities.create({
       name, difficult, duration, season
-    })
+    });
+
 
     let countryDb = await Country.findAll({
       where:{
         name:country
       }
-    })
+    });
 
     await activity.addCountry(countryDb);
 
+    console.log(activity);
     res.status(200).json(activity);
-
   }catch(error){
-
-    res.status(404).send(`no se ha agregado nada`)
-    
+    res.status(404).send(`The activity it wasn't created by error ${error}`)
   }
 }
 
