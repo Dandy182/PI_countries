@@ -97,21 +97,54 @@ const countryId = async (req, res)=>{
   }
 }
 
+// const mkActivities = async (req, res) => {
+//   const {name, difficult, duration, season, country} = req.body;
+
+//   try{
+//     const activity = await Activities.create({
+//       name, difficult, duration, season
+//     });
+
+//     console.log("actividad debería estar creada")
+//     const countryDb = await Country.findAll({
+//       where:{
+//         name: Country},
+//     })
+
+//     console.log(countryDb)
+//     await activity.addCountries(countryDb);
+
+//     res.status(200).json(activity);
+//   }catch(error){
+//     res.status(404).send(`The activity it wasn't created`)
+//   }
+// }
+
+
 const mkActivities = async (req, res) => {
-  const {name, difficult, duration, season, countries} = req.body;
+  const {name, difficult, duration, season, country} = req.body;
+  console.log(name, difficult, duration, season, country)
 
   try{
-    const activity = await Activities.create({
+
+    const createActivity = await Activities.create({
       name, difficult, duration, season
-    });
+    })
 
-    await activity.addCountries(countries);
+    const countryDb = await Country.findAll({
+      where:{name:country}
+    })
 
-    res.status(200).json(activities);
+    createActivity.addCountry(countryDb);
+
+    res.send(`Actividad creada con exito`)
+
   }catch(error){
-    res.status(404).send(`The activity it wasn't created`)
+    res.status(404).send(`no se ha agregado nada`)
   }
 }
+
+
 
 module.exports = {
   getData,
