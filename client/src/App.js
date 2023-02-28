@@ -1,9 +1,10 @@
-import './App.css';
+import './index.css';
+import Start from './Components/start';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
+      <Start/>
     </div>
   );
 }
