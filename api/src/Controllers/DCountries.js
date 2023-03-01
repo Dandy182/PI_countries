@@ -94,7 +94,7 @@ const countryId = async (req, res)=>{
       throw new Error(`Couldn't find a country with that id`);
     }
   }catch(error){
-    res.status(404).json(error.message)
+    res.status(404).json(`Error ${error}`)
   }
 }
 
