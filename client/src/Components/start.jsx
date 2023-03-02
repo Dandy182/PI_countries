@@ -1,4 +1,7 @@
-import Botton from "./button"
+
+import { Link } from "react-router-dom"
+
+
 export default function Start(){
 
   return(<div className="bkg_start">
@@ -6,6 +9,8 @@ export default function Start(){
       <h1>Bienvenidos</h1>
         <h1>Henry Countries</h1>
     </div>
-    <Botton />
+    <Link to = '/home'>
+      <button>Ingresar</button>
+    </Link>
   </div>)
 }
