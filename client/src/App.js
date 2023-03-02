@@ -1,6 +1,6 @@
 import './index.css';
 import Start from '../src/Components/landingPage';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 
 function App() {
   return (
