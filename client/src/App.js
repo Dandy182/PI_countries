@@ -1,5 +1,5 @@
 import './index.css';
-import Start from './Components/start';
+import Start from '../src/Components/landingPage';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 function App() {
