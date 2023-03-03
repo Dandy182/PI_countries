@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Start/>
+        <Start text={'titulo_inicial'}/>
       </div>
     </BrowserRouter>
   );
