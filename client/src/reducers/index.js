@@ -1,8 +1,8 @@
 
+
 const initialState ={
    countries: [] 
 }
-
 
 
 export default function reducer(state = initialState, action){
@@ -13,6 +13,8 @@ export default function reducer(state = initialState, action){
                 ...state,
                 countries: action.payload
             };
+        
+        
                     
         default:
           console.log(`no hay ciudades`)
