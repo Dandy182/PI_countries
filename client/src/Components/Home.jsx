@@ -1,18 +1,24 @@
-import {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCountries} from '../actions/index';
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 export default function Home(){
 
-    const dispatch = useDispatch();
 
-    const allCountries = useSelector((state) => state.countries);
+    return(<div className="home">
+        <div className="home__encabezado">
+         <h1>Countries</h1>
+         <nav className="navegacion">
+            <Link to='/Activity'>
+                Nueva Actividad
+            </Link>
+         </nav>
+         <SearchBar />
+        </div>
 
+        <div className="cotenedor conutye" >
 
-    useEffect (()=>{
-        dispatch(getCountries());
-    }, [dispatch])
-    return(<div>
-        
+        </div>
+
     </div>)
+    
 }
