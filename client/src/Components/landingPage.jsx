@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 
 export default function Start(){
 
-  return(<div className="bkg_start">
+  return(<div className="landing">
     <div className="titulo_inicial">
       <h1>Bienvenidos</h1>
-        <h1>Henry Countries</h1>
-    </div>
-    <Link to = '/home'>
-      <button>Ingresar</button>
+      <h1>Henry Countries</h1>
+    <Link to = '/home' >
+      <div className="btn">Ingresar</div>
     </Link>
+    </div>
   </div>)
 }
