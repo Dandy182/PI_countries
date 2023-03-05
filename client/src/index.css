@@ -65,6 +65,8 @@ h1{
 .landing{
   background: linear-gradient(45deg, rgba(53, 166, 174, 0.607), rgba(36, 36, 201, 0.607)), url(../src/img/pxfuel.jpg);
  /* background-image: url(../src/img/pxfuel.jpg)*/;
+ background-position: center center;
+ background-attachment: fixed;
   height: 100%;
   display: flex;
   align-items: center;
@@ -84,7 +86,8 @@ h1{
 
 .home{
   background: linear-gradient(45deg, rgba(129, 18, 157, 0.607), rgba(33, 242, 231, 0.607)), url(../src/img/pxfuel.jpg);
- /* background-image: url(../src/img/pxfuel.jpg)*/;
+   background-position: center center;
+   background-attachment: fixed;
   height: 100%;
 }
 
@@ -130,4 +133,23 @@ nav a{
   max-height: 95%;
   margin-top: 1rem;
   margin-bottom: 1rem; 
+  padding:1rem;
 }
+
+.filter{
+  padding:1rem 0;
+}
+
+@media only screen and (min-width:768px){
+  .moduleOrder{
+    display:flex;
+    gap:1.5rem;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.filter p{
+  margin: 0;
+}
+

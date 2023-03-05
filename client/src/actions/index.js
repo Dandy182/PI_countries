@@ -5,7 +5,7 @@ export function getCountries(){
         let dataJson = axios.get(`http://localhost:3001/countries`)   
         
         return dispatch({
-            type:'GET_COUNTRYES',
+            type:'GET_COUNTRIES',
             payload: dataJson.data
         })
     }
