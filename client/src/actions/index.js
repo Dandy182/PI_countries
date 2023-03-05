@@ -10,11 +10,3 @@ export function getCountries(){
         })
     }
 }
-
-
-// export function getCountryID(){
-
-//     return async (dispatch) =>{
-//         let dataJson = axios.get(`http://localhost:3001/countries/:id`)
-//     }
-// }

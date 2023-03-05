@@ -8,7 +8,7 @@ const initialState ={
 export default function reducer(state = initialState, action){
 
     switch(action.type){
-        case 'GET_COUNTRYES':
+        case 'GET_COUNTRIES':
             return {
                 ...state,
                 countries: action.payload

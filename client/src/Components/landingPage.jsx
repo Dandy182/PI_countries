@@ -8,7 +8,7 @@ export default function Start(){
     <div className="titulo_inicial">
       <h1>Bienvenidos</h1>
       <h1>Henry Countries</h1>
-    <Link to = '/home' >
+    <Link to = "/home" >
       <div className="btn">Ingresar</div>
     </Link>
     </div>
